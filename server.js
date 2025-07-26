@@ -5,7 +5,6 @@ import bcrypt from "bcrypt"
 import User from "./Schema/User.js"
 import { nanoid } from 'nanoid'
 import jwt from 'jsonwebtoken';
-import cors from 'cors'
 import admin from "firebase-admin";
 import Blog from './Schema/Blog.js'
 const { credential } = admin;
