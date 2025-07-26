@@ -9,7 +9,7 @@ import admin from "firebase-admin";
 import Blog from './Schema/Blog.js'
 const { credential } = admin;
 import fs from "fs";
-
+import cors from "cors";
 const serviceAccountkey = JSON.parse(
   fs.readFileSync("./react-js-blog-website-bf9c9-firebase-adminsdk-ezxo0-ae42ca2537.json", "utf8")
 );
@@ -42,7 +42,6 @@ let passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/; // regex for pass
 
 server.use(express.json());
 // allowing to make a request from frontend running on different [ort and backend on different port ]
-const cors = require("cors");
 
 server.use(cors({
   origin: "https://ayush-blog-mern.netlify.app",  // your Netlify frontend
