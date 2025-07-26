@@ -302,7 +302,6 @@ return res.status(200).json(formatdatatosend(user))
 
 
 import fileUpload from "express-fileupload";
-import fs from "fs";
 
 
 
