@@ -319,18 +319,24 @@ server.post("/get-upload", async (req, res) => {
     }
 
     const imageFile = req.files.image;
-    // Save the file temporarily
-    const tempPath = `./uploads/${imageFile.name}`;
+
+    // ✅ Ensure uploads folder exists
+    const tempDir = './uploads';
+    if (!fs.existsSync(tempDir)) {
+      fs.mkdirSync(tempDir);
+    }
+
+    const tempPath = `${tempDir}/${imageFile.name}`;
     await imageFile.mv(tempPath);
 
-    // Upload to Cloudinary
+    // ✅ Upload to Cloudinary
     const result = await cloudinary.uploader.upload(tempPath, {
       folder: "codehelp",
     });
-    // Clean up: Delete the temporary file
+
+    // ✅ Clean up: Delete local file
     fs.unlinkSync(tempPath);
 
-    // Respond with the Cloudinary URL
     res.status(200).json({ url: result.secure_url });
   } catch (error) {
     console.error("Error uploading to Cloudinary:", error);
