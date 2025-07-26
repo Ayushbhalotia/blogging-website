@@ -9,7 +9,11 @@ import cors from 'cors'
 import admin from "firebase-admin";
 import Blog from './Schema/Blog.js'
 const { credential } = admin;
-import serviceAccountkey from "./react-js-blog-website-bf9c9-firebase-adminsdk-ezxo0-ae42ca2537.json" assert {type :"json"}
+import fs from "fs";
+
+const serviceAccountkey = JSON.parse(
+  fs.readFileSync("./react-js-blog-website-bf9c9-firebase-adminsdk-ezxo0-ae42ca2537.json", "utf8")
+);
 import {getAuth} from "firebase-admin/auth"
 import Cloudinary from "cloudinary";
 const { v2: cloudinary } = Cloudinary;
